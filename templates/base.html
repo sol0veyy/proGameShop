@@ -13,20 +13,26 @@
         <link rel="stylesheet" href="{% static 'styles/main.css' %}">
         <title>ProGame</title>
     </head>
-    <body>
-        <nav class="navbar bg-dark" data-bs-theme="dark">
+    <body class="bg-dark text-white">
+        <nav class="navbar bg-black" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'home' %}">
                     <i class="ph ph-game-controller"></i>
                     <span class="logo">ProGame</span>
                 </a>
                 <div class="d-flex gap-2">
-                    <button class="btn-create-profile btn btn-outline-secondary">
+                    <a 
+                        class="btn-create-profile btn btn-outline-secondary"
+                        href="{% url 'reg' %}" 
+                    >
                         Создать профиль
-                    </button>
-                    <button class="btn btn-primary">
+                    </a>
+                    <a 
+                        class="btn btn-primary"
+                        href="{% url 'login' %}" 
+                    >
                         Войти
-                    </button>
+                    </a>
                 </div>
             </div>
         </nav>

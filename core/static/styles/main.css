@@ -2,6 +2,16 @@
     font-size: 25px;
 }
 
-.btn-create-profile:hover {
-    background-color: inherit;
+input {
+    color: #fff !important;
+    background: transparent !important;
+    border: 1px solid #777 !important;
+}
+
+input::placeholder {
+    color: #777 !important;
+}
+
+input:focus {
+    box-shadow: none !important;
 }

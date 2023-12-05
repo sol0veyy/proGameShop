@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'styles/reg-login.css' %}">
+
+    <div class="container">
+        <form class="d-flex flex-column">
+            <div class="mb-3">
+                <label for="usernameInput" class="col-sm-2 col-form-label">Логин</label>
+                <input 
+                    type="text"
+                    class="form-control"
+                    id="usernameInput"
+                    placeholder="username"
+                >
+            </div>
+            <div class="mb-3">
+                <label for="emailInput" class="form-label">Почта</label>
+                <input
+                    type="email"
+                    class="form-control"
+                    id="emailInput"
+                    placeholder="example@mail.ru"
+                />
+            </div>
+            <div class="mb-3">
+                <label for="passwordInput" class="form-label">Пароль</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    id="passwordInput"
+                    placeholder="password"
+                />
+            </div>
+            <button id="btnSubmitCreateUser" type="submit" class="btn btn-primary">Создать</button>
+        </form>
+    </div>
+
+    <script src="{% static 'js/reg.js' %}"></script>
+
+{% endblock %}

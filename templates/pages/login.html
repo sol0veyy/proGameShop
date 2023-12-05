@@ -1,9 +1,9 @@
-{% extends 'base.html' %} 
-{% load static %} 
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
-    <link rel="stylesheet" href="{% static 'styles/reg.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/reg-login.css' %}">
 
     <div class="container">
         <form class="d-flex flex-column">
@@ -17,15 +17,6 @@
                 >
             </div>
             <div class="mb-3">
-                <label for="emailInput" class="form-label">Почта</label>
-                <input
-                    type="email"
-                    class="form-control"
-                    id="emailInput"
-                    placeholder="example@mail.ru"
-                />
-            </div>
-            <div class="mb-3">
                 <label for="passwordInput" class="form-label">Пароль</label>
                 <input
                     type="password"
@@ -34,10 +25,10 @@
                     placeholder="password"
                 />
             </div>
-            <button id="btnSubmitCreateUser" type="submit" class="btn btn-primary">Создать</button>
+            <button id="btnSubmitLogin" type="submit" class="btn btn-primary">Войти</button>
         </form>
     </div>
 
-<script src="{% static 'js/reg.js' %}"></script>
+    <script src="{% static 'js/login.js' %}"></script>
 
 {% endblock %}

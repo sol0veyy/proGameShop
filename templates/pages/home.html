@@ -5,6 +5,14 @@
 
 {% block content %}
 
-    <h1>Home page</h1>
+    {% if user_info.isAuth %}
+
+    <h1>{{ user_info.user.username }}</h1>
+
+    {% else %}
+
+    <h1>Not Authorized</h1>
+
+    {% endif %}
 
 {% endblock %}

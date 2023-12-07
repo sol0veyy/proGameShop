@@ -3,13 +3,16 @@ from django.http import HttpResponse
 from .settings import SECRET_KEY
 from django.contrib.auth import get_user_model
 import jwt
-
+from products.models import Product
 
 def home(request):
     args = {}
 
     user = get_user(request)
     args['user_info'] = user
+
+    products = Product.objects.all()
+    args['products'] = products
 
     return render(request, 'pages/home.html', args)
 

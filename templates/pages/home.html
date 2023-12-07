@@ -3,6 +3,18 @@
 
 {% block content %}
 
-    
+    <div class="container">
+        {% for product in products %}
+
+            <div class="card mt-5" style="width: 15rem;">
+                <img src="{% static 'img/products/' %}{{product.photo}}" class="card-img-top" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.price }} руб.</p>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
 
 {% endblock %}

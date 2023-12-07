@@ -1,6 +1,6 @@
 {% load static %}
 
-<nav class="navbar bg-black" data-bs-theme="dark">
+<nav class="navbar bg-black">
     <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'home' %}">
             <img class="logo-svg" src="{% static 'img/controller.svg' %}" alt="controller">
@@ -8,9 +8,11 @@
             <span class="logo">ProGame</span>
         </a>
         <div class="d-flex gap-2">
+            <button class="btn btn-success">Личный кабинет</button>
             <button 
-                id="btnExit"
                 class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#exitAccountModal"
             >
                 Выйти
             </button>
@@ -18,4 +20,6 @@
     </div>
 </nav>
 
-<script src="{% static 'js/logout.js' %}"></script>
+{% include 'components/modals/exit_modal.html' %}
+
+<script src="{% static 'js/user-header.js' %}"></script>

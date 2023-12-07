@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="{% static 'styles/main.css' %}">
         <title>ProGame</title>
     </head>
-    <body class="bg-dark text-white">
+    <body data-bs-theme="dark">
         {% if user_info.isAuth %}
 
             {% include 'components/user_header.html' %}

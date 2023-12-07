@@ -43,7 +43,7 @@ btnSubmitCreateUser.addEventListener('click', (event) => {
             if (data.errors) {
                 alert(data.errors[0].message)
             } else {
-                window.location.href = '/'
+                window.location.href = '/login/'
             }
         })
 })

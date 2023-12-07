@@ -1,4 +1,6 @@
 {% load static %}
+{% load sass_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,17 +13,17 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+        <link rel="stylesheet" href="{% sass_src 'styles/main.scss' %}">
         <title>ProGame</title>
     </head>
     <body data-bs-theme="dark">
         {% if user_info.isAuth %}
 
-            {% include 'components/user_header.html' %}
+            {% include 'components/headers/user_header.html' %}
         
         {% else %}
         
-            {% include 'components/header.html' %}
+            {% include 'components/headers/header.html' %}
 
         {% endif %}
 

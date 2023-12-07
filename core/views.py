@@ -11,8 +11,6 @@ def home(request):
     user = get_user(request)
     args['user_info'] = user
 
-    print('ARGS', args)
-
     return render(request, 'pages/home.html', args)
 
 

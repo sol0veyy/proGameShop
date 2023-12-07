@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView 
 from . import views
@@ -10,6 +10,9 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('reg/', user_views.reg, name='reg'),
     path('login/', user_views.login, name='login'),
+
+    path('user/', include('users.urls')),
+
     path('admin/', admin.site.urls),
     path('graphql/', jwt_cookie(csrf_exempt(GraphQLView.as_view(graphiql=True))))
 ]

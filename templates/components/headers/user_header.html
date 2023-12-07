@@ -8,7 +8,12 @@
             <span class="logo">ProGame</span>
         </a>
         <div class="d-flex gap-2">
-            <button class="btn btn-success">Личный кабинет</button>
+            <a 
+                class="btn btn-success"
+                href="{% url 'profile' %}"
+            >
+                Личный кабинет
+            </a>
             <button 
                 class="btn btn-primary"
                 data-bs-toggle="modal"

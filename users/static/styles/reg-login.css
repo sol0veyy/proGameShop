@@ -2,3 +2,14 @@
     max-width: 400px;
     margin-top: 140px;
 }
+
+.password-block {
+    position: relative;
+}
+
+.toggle-show-pass {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    bottom: 5px;
+}

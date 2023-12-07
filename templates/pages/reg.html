@@ -25,7 +25,7 @@
                     placeholder="example@mail.ru"
                 />
             </div>
-            <div class="mb-3">
+            <div class="mb-3 password-block">
                 <label for="passwordInput" class="form-label">Пароль</label>
                 <input
                     type="password"
@@ -33,11 +33,13 @@
                     id="passwordInput"
                     placeholder="password"
                 />
+                <img id="toggleShowPass" class="toggle-show-pass" src="{% static 'img/eye-fill.svg' %}" alt="eye">
             </div>
             <button id="btnSubmitCreateUser" type="submit" class="btn btn-primary">Создать</button>
         </form>
     </div>
 
+    <script src="{% static 'js/reg-login.js' %}"></script>
     <script src="{% static 'js/reg.js' %}"></script>
 
 {% endblock %}

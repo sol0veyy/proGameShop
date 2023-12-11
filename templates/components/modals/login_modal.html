@@ -1,0 +1,20 @@
+{% load static %}
+
+<div class="modal fade" id="loginAccountModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Вход</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Для продолжения необходимо войти в аккаунт или создать новый профиль
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Отмена</button>
+                <a href="{% url 'reg' %}" class="btn btn-outline-primary">Создать профиль</a>
+                <a href="{% url 'login' %}" class="btn btn-primary">Войти</a>
+            </div>
+        </div>
+    </div>
+</div>

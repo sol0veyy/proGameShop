@@ -4,10 +4,15 @@
     <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'home' %}">
             <img class="logo-svg" src="{% static 'img/controller.svg' %}" alt="controller">
-            <!-- <i class="bi bi-controller"></i> -->
             <span class="logo">ProGame</span>
         </a>
         <div class="d-flex gap-2">
+            <button type="button" class="btn btn-outline-info position-relative mx-4">
+                корзина
+                <span id="userCartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ user_carts_count }}
+                </span>
+            </button>
             <a 
                 class="btn btn-success"
                 href="{% url 'profile' %}"

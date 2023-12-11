@@ -1,2 +1,4 @@
+.container {
+  min-height: calc(100vh - 104px - 94px); }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,22 @@
+{% load static %}
+
+{% block style %} {% endblock %}
+
+<div class="modal fade" id="{% block modal_id %} {% endblock %}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">{% block modal_title %} {% endblock %}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {% block modal_body %} {% endblock %}
+            </div>
+            <div class="modal-footer">
+                {% block modal_footer %} {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block script %} {% endblock %}

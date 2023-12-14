@@ -3,6 +3,7 @@ from graphene_django import DjangoObjectType
 from django.contrib.auth import get_user_model
 from .models import UserCart
 from products.models import Product
+from graphql_jwt import ObtainJSONWebToken
 
 class UserType(DjangoObjectType):
     class Meta:
@@ -32,6 +33,9 @@ class CreateUser(graphene.Mutation):
         )
         user.set_password(password)
         user.save()
+
+        ObtainJSONWebToken.mutate(self, info, username=username, password=password)
+
         return CreateUser(user=user)
 
 class CreateUserCart(graphene.Mutation):

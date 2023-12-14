@@ -1,23 +1,24 @@
 const btnSubmitCreateUser = document.getElementById('btnSubmitCreateUser');
 
-const query = `
-    mutation CreateUser($email: String!, $password: String!, $username: String!) {
-        createUser(email: $email, password: $password, username: $username) {
-        user {
-            username
-            password
-            email
-        }
-        }
-    }
-`
-
 btnSubmitCreateUser.addEventListener('click', (event) => {
     event.preventDefault();
 
-    const email = document.getElementById('emailInput').value;
-    const password = document.getElementById('passwordInput').value;
-    const username = document.getElementById('usernameInput').value;
+    const query = `
+        mutation CreateUser($email: String!, $password: String!, $username: String!) {
+            createUser(email: $email, password: $password, username: $username) {
+            user {
+                username
+                password
+                email
+            }
+            }
+        }
+    `
+
+    const email = document.getElementById('regEmailInput').value;
+    const password = document.getElementById('regPasswordInput').value;
+    const username = document.getElementById('regUsernameInput').value;
+    const loginModal = document.getElementById('loginModal');
 
     const variables = {
         email,
@@ -41,9 +42,23 @@ btnSubmitCreateUser.addEventListener('click', (event) => {
         .then(res => res.json())
         .then(data => {
             if (data.errors) {
-                alert(data.errors[0].message)
+                alert(data.errors[0].message);
             } else {
-                window.location.href = '/login/'
+                window.location.href = '/'
             }
         })
+})
+
+const regToggleShowPass = document.getElementById('regToggleShowPass');
+
+regToggleShowPass.addEventListener('click', (event) => {
+    const inputPass = document.getElementById('regPasswordInput');
+
+    if (inputPass.type == 'password') {
+        inputPass.type = 'text';
+        event.target.src = '/static/img/eye-slash-fill.svg';
+    } else {
+        inputPass.type = 'password';
+        event.target.src = '/static/img/eye-fill.svg';
+    }
 })

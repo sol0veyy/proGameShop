@@ -9,13 +9,15 @@
         <div class="d-flex gap-2">
             <a 
                 class="btn-create-profile btn btn-outline-secondary"
-                href="{% url 'reg' %}" 
+                data-bs-toggle="modal"
+                data-bs-target="#regModal"
             >
                 Создать профиль
             </a>
             <a 
                 class="btn btn-primary"
-                href="{% url 'login' %}" 
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
             >
                 Войти
             </a>

@@ -1,20 +1,56 @@
+{% extends 'bases/base_modal.html' %}
 {% load static %}
 
-<div class="modal fade" id="loginAccountModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Вход</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+{% block style %}
+
+    <link rel="stylesheet" href="{% static 'styles/reg-login.css' %}">
+
+{% endblock %}
+
+{% block modal_id %}loginModal{% endblock %}
+
+{% block modal_title %}
+    Вход
+{% endblock %}
+
+{% block modal_body %}
+
+    <div class="d-flex justify-content-center">
+        <form class="d-flex flex-column">
+            <div class="mb-3">
+                <label for="usernameInput" class="col-sm-2 col-form-label">Логин</label>
+                <input 
+                    type="text"
+                    class="form-control"
+                    id="loginUsernameInput"
+                    placeholder="username"
+                >
             </div>
-            <div class="modal-body">
-                Для продолжения необходимо войти в аккаунт или создать новый профиль
+            <div class="mb-3 password-block">
+                <label for="passwordInput" class="form-label">Пароль</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    id="loginPasswordInput"
+                    placeholder="password"
+                />
+                <img id="loginToggleShowPass" class="toggle-show-pass" src="{% static 'img/eye-fill.svg' %}" alt="eye">
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Отмена</button>
-                <a href="{% url 'reg' %}" class="btn btn-outline-primary">Создать профиль</a>
-                <a href="{% url 'login' %}" class="btn btn-primary">Войти</a>
-            </div>
-        </div>
+        </form>
     </div>
-</div>
+
+{% endblock %}
+
+{% block modal_footer %}
+
+    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Отмена</button>
+    <button id="btnSubmitLogin" type="submit" class="btn btn-primary">Войти</button>
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static 'js/login.js' %}"></script>
+
+{% endblock %}

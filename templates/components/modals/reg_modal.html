@@ -1,18 +1,29 @@
-{% extends 'base.html' %} 
-{% load static %} 
+{% extends 'bases/base_modal.html' %}
+{% load static %}
 
-{% block content %}
+
+{% block style %}
 
     <link rel="stylesheet" href="{% static 'styles/reg-login.css' %}">
 
-    <div class="container">
+{% endblock %}
+
+{% block modal_id %}regModal{% endblock %}
+
+{% block modal_title %}
+    Регистрация
+{% endblock %}
+
+{% block modal_body %}
+
+    <div class="d-flex justify-content-center">
         <form class="d-flex flex-column">
             <div class="mb-3">
                 <label for="usernameInput" class="col-sm-2 col-form-label">Логин</label>
                 <input 
                     type="text"
                     class="form-control"
-                    id="usernameInput"
+                    id="regUsernameInput"
                     placeholder="username"
                 >
             </div>
@@ -21,7 +32,7 @@
                 <input
                     type="email"
                     class="form-control"
-                    id="emailInput"
+                    id="regEmailInput"
                     placeholder="example@mail.ru"
                 />
             </div>
@@ -30,16 +41,25 @@
                 <input
                     type="password"
                     class="form-control"
-                    id="passwordInput"
+                    id="regPasswordInput"
                     placeholder="password"
                 />
-                <img id="toggleShowPass" class="toggle-show-pass" src="{% static 'img/eye-fill.svg' %}" alt="eye">
+                <img id="regToggleShowPass" class="toggle-show-pass" src="{% static 'img/eye-fill.svg' %}" alt="eye">
             </div>
-            <button id="btnSubmitCreateUser" type="submit" class="btn btn-primary">Создать</button>
         </form>
     </div>
 
-    <script src="{% static 'js/reg-login.js' %}"></script>
+{% endblock %}
+
+{% block modal_footer %}
+
+    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Отмена</button>
+    <button id="btnSubmitCreateUser" type="submit" class="btn btn-primary">Создать</button>
+
+{% endblock %}
+
+{% block script %}
+
     <script src="{% static 'js/reg.js' %}"></script>
 
 {% endblock %}

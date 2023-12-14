@@ -1,19 +1,18 @@
+{% extends 'bases/base_modal.html' %}
 {% load static %}
 
-<div class="modal fade" id="exitAccountModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Выход с аккаунта</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Вы уверены, что хотите выйти с аккаунта?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Нет</button>
-                <button id="btnExit" type="button" class="btn btn-primary">Да</button>
-            </div>
-        </div>
-    </div>
-</div>
+
+{% block modal_id %}exitAccountModal{% endblock %}
+
+{% block modal_title %}
+    Выход с аккаунта
+{% endblock %}
+
+{% block modal_body %}
+    Вы уверены, что хотите выйти с аккаунта?
+{% endblock %}
+
+{% block modal_footer %}
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Нет</button>
+    <button id="btnExit" type="button" class="btn btn-primary">Да</button>
+{% endblock %}

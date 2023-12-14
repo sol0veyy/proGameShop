@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'bases/base.html' %}
 {% load static sass_tags %}
 
 
@@ -36,7 +36,7 @@
                                 <button 
                                     class="btn btn-outline-primary"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#loginAccountModal"
+                                    data-bs-target="#infoLoginModal"
                                 >
                                     купить
                                 </button>
@@ -49,7 +49,7 @@
         {% endfor %}
     </div>
 
-    {% include 'components/modals/login_modal.html' %}
+    {% include 'components/modals/info_login_modal.html' %}
 
     <script src="{% static 'js/cart.js' %}"></script>
 

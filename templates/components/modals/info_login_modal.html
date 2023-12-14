@@ -1,0 +1,19 @@
+{% extends 'bases/base_modal.html' %}
+{% load static %}
+
+
+{% block modal_id %}infoLoginModal{% endblock %}
+
+{% block modal_title %}
+    Инфо
+{% endblock %}
+
+{% block modal_body %}
+    Для продолжения необходимо войти в аккаунт или создать новый профиль
+{% endblock %}
+
+{% block modal_footer %}
+    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Отмена</button>
+    <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#regModal">Создать профиль</a>
+    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Войти</a>
+{% endblock %}

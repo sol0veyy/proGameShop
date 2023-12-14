@@ -1,11 +1,9 @@
 from django.db import models
 from users.models import UserCart
-from django.contrib.auth import get_user_model
-from typing import Type
 
 # Create your models here.
 class Product(models.Model):
-    photo = models.ImageField()
+    photo = models.ImageField(upload_to='products/')
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.CharField(max_length=255)

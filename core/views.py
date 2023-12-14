@@ -12,7 +12,7 @@ def home(request):
     # pages
     page = int(request.GET.get('page', 1))
 
-    colProducts = 2
+    colProducts = 20
     skipProducts = (page - 1) * colProducts
     viewProducts = skipProducts + colProducts
 

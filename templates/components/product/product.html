@@ -1,0 +1,28 @@
+{% load static %}
+
+<div class="card" style="width: 15rem;">
+    <img src="{% static 'img/products/' %}{{product.0.photo}}" class="card-img-top" alt="{{ product.name }}">
+    <div class="card-body d-flex flex-column justify-content-between">
+        <h5 class="card-title">{{ product.0.name }}</h5>
+        <div class="d-flex justify-content-between mt-2">
+            <span class="align-self-center">{{ product.0.price }} руб.</span>
+            <div>
+                {% if user_info.isAuth %}
+                    {% if product.0.id in user_carts_product %}
+                        {% include 'components/product/buttons.html' %}
+                    {% else %}
+                        {% include 'components/product/buttons.html' with display=True %}
+                    {% endif %}
+                {% else %}
+                    <button 
+                        class="btn btn-outline-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#infoLoginModal"
+                    >
+                        купить
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,10 +9,27 @@ from users.models import UserCart
 def home(request):
     args = {}
 
+    # pages
+    page = int(request.GET.get('page', 1))
+
+    colProducts = 2
+    skipProducts = (page - 1) * colProducts
+    viewProducts = skipProducts + colProducts
+
+    all_products = Product.objects.all()
+    products = all_products[skipProducts:viewProducts]
+
+    pages = [page - 1, page]
+    is_products = (all_products.count() - skipProducts) - colProducts
+
+    if is_products > 0:
+        pages.append(page + 1)
+    
+    args['pages'] = pages
+
+    # user
     user = get_user(request)
     args['user_info'] = user
-
-    products = Product.objects.all()
 
     user_carts = UserCart.objects.filter(user=user['user'])
     args['user_carts_count'] = user_carts.count()

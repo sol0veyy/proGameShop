@@ -1,0 +1,6 @@
+<div {% if display %} style="display: none;" {% endif %} id="btnsBuyProduct-{{ product.0.id }}">
+    <button value="{{ product.0.id }}" id="delCartProduct" class="btn btn-outline-danger">-</button>
+    <span id="countProduct-{{ product.0.id }}" class="mx-2">{{ product.1 }}</span>
+    <button value="{{ product.0.id }}" id="addCartProduct" class="btn btn-outline-success">+</button>
+</div>
+<button {% if not display %} style="display: none;" {% endif %} value="{{ product.0.id }}" id="btnBuyProduct-{{ product.0.id }}" class="btn-buy-product btn btn-outline-primary">купить</button>

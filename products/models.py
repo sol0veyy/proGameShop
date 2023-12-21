@@ -8,9 +8,6 @@ class Product(models.Model):
     description = models.TextField()
     price = models.CharField(max_length=255)
 
-    def product_user_carts(self, user):
-        return UserCart.objects.filter(user=user, product=self).count()
-
     def __str__(self):
         return self.name
     

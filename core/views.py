@@ -16,7 +16,7 @@ def home(request):
     skipProducts = (page - 1) * colProducts
     viewProducts = skipProducts + colProducts
 
-    all_products = Product.objects.all()
+    all_products = Product.objects.all().values()
     products = all_products[skipProducts:viewProducts]
 
     pages = [page - 1, page]
@@ -35,11 +35,10 @@ def home(request):
     args['user_carts_count'] = user_carts.count()
     args['user_carts_product'] = user_carts.values_list('product', flat=True)
     
-    user_products_count = []
     for product in products:
-        user_products_count.append(product.product_user_carts(user['user']))
-
-    args['products'] = list(zip(products, user_products_count))
+        product['user_count'] = UserCart.objects.filter(user=user['user'], product=product['id']).count()
+        
+    args['products'] = products
 
     return render(request, 'pages/home.html', args)
 

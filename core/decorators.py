@@ -8,6 +8,6 @@ def is_login(func):
         if user['isAuth']:
             return func(request)
         else:
-            return render(request, 'pages/login.html')
+            return render(request, 'pages/not_found.html')
         
     return wrapper

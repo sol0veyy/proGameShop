@@ -3,100 +3,85 @@ const userCartCount = document.getElementById('userCartCount');
 const addCartProduct = document.querySelectorAll('#addCartProduct');
 const delCartProduct = document.querySelectorAll('#delCartProduct');
 
-const addToCartProduct = (productId) => {
-    const query = `
-        mutation CreateUserCart($productId: ID!) {
-            createUserCart(productId: $productId) {
-                userCart {
-                    id
-                }
-            }
-        }
-    `
-    const variables = {
-        productId
-    }
-
-    const data = JSON.stringify({
-        query,
-        variables
-    })
-
-    fetch('/graphql/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: data
-    }).then(() => {
-        userCartCount.innerText = parseInt(userCartCount.innerText) + 1
-    }).catch((error) => {
-        console.log(error)
-    })
-}
-
-const removeFromCartProduct = (productId) => {
-    const query = `
-        mutation DeleteUserCart($productId: ID!) {
-            delUserCart(productId: $productId) {
-                userCart {
-                    product {
-                        name
+class Cart {
+    static async addToCartProduct(productId) {
+        const query = `
+            mutation {
+                createUserCart(productId: ${productId}) {
+                    userCart {
+                        id
                     }
                 }
             }
+        `
+        
+        try {
+            await this.makeGraphQLRequest(query);
+            CartUI.updateUserCartCountUI(1)
+        } catch (error) {
+            console.error(error)
         }
-    `
-
-    const variables = {
-        productId
     }
 
-    const data = JSON.stringify({
-        query,
-        variables
-    })
+    static async removeFromCartProduct(productId) {
+        const query = `
+            mutation {
+                delUserCart(productId: ${productId}) {
+                    userCart {
+                        product {
+                            name
+                        }
+                    }
+                }
+            }
+        `
+    
+        try {
+            await this.makeGraphQLRequest(query);
+            CartUI.updateUserCartCountUI(-1)
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
-    fetch('/graphql/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: data
-    }).then(() => {
-        userCartCount.innerText = parseInt(userCartCount.innerText) - 1
-    }).catch((error) => {
-        console.log(error)
-    })
+    static async makeGraphQLRequest(query) {
+        const data = JSON.stringify({
+            query
+        })
+    
+        return fetch('/graphql/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: data
+        })
+    }
 }
 
-btnBuyProduct.forEach((btn) => {
-    btn.addEventListener('click', (event) => {
+class CartUI extends Cart {
+    static buyProductUI(event) {
         const productId = event.target.value;
         const btnsBuyProduct = document.getElementById(`btnsBuyProduct-${productId}`);
         const countProduct = document.getElementById(`countProduct-${productId}`);
 
-        btn.style.display = 'none';
+        event.target.style.display = 'none';
         btnsBuyProduct.style.display = 'block';
         countProduct.innerText = parseInt(countProduct.innerText) + 1
 
-        addToCartProduct(productId)
-    })
-})
+        Cart.addToCartProduct(productId).catch(error => console.error(error));
+    }
 
-addCartProduct.forEach((btn) => {
-    btn.addEventListener('click', (event) => {
+    static addToCartProductUI(event) {
         const productId = event.target.value;
         const countProduct = document.getElementById(`countProduct-${productId}`);
 
         countProduct.innerText = parseInt(countProduct.innerText) + 1;
 
-        addToCartProduct(productId)
-    })
-})
+        Cart.addToCartProduct(productId).catch(error => console.error(error));
+    }
 
-delCartProduct.forEach((btn) => {
-    btn.addEventListener('click', (event) => {
+    static removeFromCartProductUI(event) {
         const productId = event.target.value;
         const countProduct = document.getElementById(`countProduct-${productId}`);
         const btnsBuyProduct = document.getElementById(`btnsBuyProduct-${productId}`);
@@ -110,6 +95,60 @@ delCartProduct.forEach((btn) => {
             btnBuyProduct.style.display = 'block';
         }
 
-        removeFromCartProduct(productId);
-    })
-})
+        Cart.removeFromCartProduct(productId).catch(error => console.error(error));
+    }
+
+    static updateUserCartCountUI(change) {
+        userCartCount.innerText = parseInt(userCartCount.innerText) + change;
+    }
+}
+
+class CartListUI extends Cart {
+    static addToCartProductUI(event) {
+        const productId = event.target.value;
+        CartListUI.updateUserPriceUI(productId, 1);
+
+        CartUI.addToCartProductUI(event);
+    }
+
+    static removeFromCartProductUI(event) {
+        const productId = event.target.value;
+        const countProduct = document.getElementById(`countProduct-${productId}`);
+        CartListUI.updateUserPriceUI(productId, -1);
+
+        countProduct.innerText = parseInt(countProduct.innerText) - 1;
+
+        Cart.removeFromCartProduct(productId).catch(error => console.error(error));
+
+        if (parseInt(countProduct.innerText) === 0) {
+            const product = document.getElementById(`product-${productId}`);
+            product.remove();
+        }
+    }
+
+    static updateUserPriceUI(productId, change) {
+        const userPrice = document.getElementById(`userPrice-${productId}`);
+        const price = document.getElementById(`price-${productId}`);
+        const countProduct = document.getElementById(`countProduct-${productId}`);
+
+        const newUserPrice = parseInt(price.innerText.replace(' ', '')) * (parseInt(countProduct.innerText) + change);
+        const formattedUserPrice = newUserPrice.toLocaleString().replace('.', '')
+
+        userPrice.innerText = formattedUserPrice + ' руб.';
+    }
+}
+
+function attachEventListeners(btns, handler) {
+    btns.forEach((btn) => {
+        btn.addEventListener('click', handler);
+    });
+}
+
+if (location.pathname === '/user/cart/') {
+    attachEventListeners(addCartProduct, CartListUI.addToCartProductUI);
+    attachEventListeners(delCartProduct, CartListUI.removeFromCartProductUI);
+} else {
+    attachEventListeners(btnBuyProduct, CartUI.buyProductUI);
+    attachEventListeners(addCartProduct, CartUI.addToCartProductUI);
+    attachEventListeners(delCartProduct, CartUI.removeFromCartProductUI);
+}

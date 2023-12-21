@@ -7,12 +7,12 @@
             <span class="logo">ProGame</span>
         </a>
         <div class="d-flex gap-2">
-            <button type="button" class="btn btn-outline-info position-relative mx-4">
+            <a href="{% url 'cart' %}" type="button" class="btn btn-outline-info position-relative mx-4">
                 корзина
                 <span id="userCartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     {{ user_carts_count }}
                 </span>
-            </button>
+            </a>
             <a 
                 class="btn btn-success"
                 href="{% url 'profile' %}"
